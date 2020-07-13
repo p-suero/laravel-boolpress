@@ -1,4 +1,6 @@
 @extends('layouts.dashboard')
+@section('page-title', "Home Admin")
+
 @section('content')
     <div class="container">
         <div class="row">

@@ -1,4 +1,6 @@
 @extends('layouts.dashboard')
+@section('page-title',"Lista post")
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -38,7 +40,7 @@
                                     <form class="d-inline" action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post">
                                        @csrf
                                        @method('DELETE')
-                                       <input type="submit" class="btn btn-small btn-danger" value="Elimina">
+                                       <input type="submit" class="btn btn-sm btn-danger" value="Elimina">
                                    </form>
                                 </td>
                             </tr>

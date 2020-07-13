@@ -1,4 +1,6 @@
 @extends('layouts.dashboard')
+@section('page-title',"Modifica post")
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
