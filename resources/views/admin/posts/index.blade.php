@@ -34,7 +34,12 @@
                                 </td>
                                 <td>
                                     <a href="{{route("admin.posts.show", ["post" => $post])}}" class="btn btn-primary btn-sm">Mostra dettagli</a>
-                                    <a href="#" class="btn btn-warning btn-sm">Modifica post</a>
+                                    <a href="{{route("admin.posts.edit", ["post" => $post])}}" class="btn btn-warning btn-sm">Modifica post</a>
+                                    <form class="d-inline" action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post">
+                                       @csrf
+                                       @method('DELETE')
+                                       <input type="submit" class="btn btn-small btn-danger" value="Elimina">
+                                   </form>
                                 </td>
                             </tr>
                         @empty
