@@ -15,6 +15,7 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>Content</th>
+                            <th>Category</th>
                             <th>Slug</th>
                             <th>Azioni</th>
                         </tr>
@@ -30,6 +31,9 @@
                                 </td>
                                 <td>
                                     {{$post->content}}
+                                </td>
+                                <td>
+                                    {{$post->category->name}}
                                 </td>
                                 <td>
                                     {{$post->slug}}
