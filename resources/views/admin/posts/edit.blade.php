@@ -32,6 +32,20 @@
                             <small class='text-danger'>{{$message}}</small>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria: </label>
+                        <select id="categoria" class="form-control" name="category_id">
+                            <option value="">Scegli una categoria</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}" {{($post->category->id ?? '') == $category->id ? "selected" : ""}}>
+                                    {{$category->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('content')
+                            <small class='text-danger'>{{$message}}</small>
+                        @enderror
+                    </div>
                     <button type="submit" class="btn btn-primary">Salva</button>
                 </form>
             </div>

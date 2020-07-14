@@ -16,7 +16,6 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Category</th>
-                            <th>Slug</th>
                             <th>Azioni</th>
                         </tr>
                     </thead>
@@ -33,10 +32,7 @@
                                     {{$post->content}}
                                 </td>
                                 <td>
-                                    {{$post->category->name}}
-                                </td>
-                                <td>
-                                    {{$post->slug}}
+                                    {{$post->category->name ?? "-"}}
                                 </td>
                                 <td>
                                     <a href="{{route("admin.posts.show", ["post" => $post])}}" class="btn btn-primary btn-sm">Mostra dettagli</a>
