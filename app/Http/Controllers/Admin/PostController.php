@@ -52,7 +52,6 @@ class PostController extends Controller
             "content" => "required"
         ]);
         $data = $request->all();
-        dd($data);
         $slug = Str::of($data['title'])->slug('-');
         $original_slug= $slug;
         $post = Post::where("slug", $slug)->first();
