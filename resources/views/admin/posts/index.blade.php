@@ -13,9 +13,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
-                            <th>Content</th>
-                            <th>Category</th>
+                            <th>Titolo</th>
+                            <th>Testo</th>
+                            <th>Categoria</th>
                             <th>Azioni</th>
                         </tr>
                     </thead>
