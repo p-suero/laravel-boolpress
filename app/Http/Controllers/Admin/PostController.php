@@ -52,6 +52,7 @@ class PostController extends Controller
             "content" => "required"
         ]);
         $data = $request->all();
+        dd($data);
         $slug = Str::of($data['title'])->slug('-');
         $original_slug= $slug;
         $post = Post::where("slug", $slug)->first();
@@ -65,6 +66,9 @@ class PostController extends Controller
         $new_post = new Post();
         $new_post->fill($data);
         $new_post->save();
+        if (!empty($data["tags"])) {
+            $new_post->tags()->sync($data["tags"]);
+        }
         return redirect()->route('admin.posts.index');
     }
 
@@ -88,9 +92,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
         $data = [
             "categories" => $categories,
-            "post" => $post
+            "post" => $post,
+            "tags" => $tags
         ];
         return view("admin.posts.edit", $data);
     }
@@ -112,6 +118,11 @@ class PostController extends Controller
         $slug = Str::of($data['title'])->slug('-');
         $data['slug'] = $slug;
         $post->update($data);
+        if (!empty($data["tags"])) {
+            $post->tags()->sync($data["tags"]);
+        } else {
+            $post->tags()->detach();
+        }
         return redirect()->route('admin.posts.index');
     }
 
