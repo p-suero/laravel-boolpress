@@ -16,6 +16,7 @@
                             <th>Titolo</th>
                             <th>Testo</th>
                             <th>Categoria</th>
+                            <th>Tag</th>
                             <th>Azioni</th>
                         </tr>
                     </thead>
@@ -33,6 +34,18 @@
                                 </td>
                                 <td>
                                     {{$post->category->name ?? "-"}}
+                                </td>
+                                <td>
+                                    @forelse ($post->tags as $tag)
+                                        {{$tag->name}}
+                                        @if ($loop->last)
+                                            {{""}}
+                                        @else
+                                            {{","}}
+                                        @endif
+                                    @empty
+                                        {{"-"}}
+                                    @endforelse
                                 </td>
                                 <td>
                                     <a href="{{route("admin.posts.show", ["post" => $post])}}" class="btn btn-primary btn-sm">Mostra dettagli</a>

@@ -15,6 +15,21 @@
                         {{"-"}}
                     @endif
                 </p>
+                <p>
+                    <strong>
+                        Tags: 
+                    </strong>
+                    @forelse ($post->tags as $tag)
+                        {{$tag->name}}
+                        @if ($loop->last)
+                            {{""}}
+                        @else
+                            {{","}}
+                        @endif
+                    @empty
+                        {{"-"}}
+                    @endforelse
+                </p>
             </div>
         </div>
     </div>
