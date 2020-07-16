@@ -17,10 +17,10 @@
                 </p>
                 <p>
                     <strong>
-                        Tags: 
+                        Tags:
                     </strong>
                     @forelse ($post->tags as $tag)
-                        {{$tag->name}}
+                        <a href="{{route("tag.show", ["slug"=> $tag->slug])}}">{{$tag->name}}</a>
                         @if ($loop->last)
                             {{""}}
                         @else
