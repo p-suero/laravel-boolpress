@@ -20,6 +20,8 @@ Route::get("/posts", "PostController@index")->name("posts.index");
 Route::get("/posts/{slug}", "PostController@show")->name("posts.show");
 Route::get("/categories/{slug}", "PostController@category")->name("category.show");
 Route::get("/tags/{slug}", "PostController@tag")->name("tag.show");
+Route::get("/contact","HomeController@contact")->name("contact.create");
+Route::post("/contact", "HomeController@contactStore")->name("contact.store");
 
 Route::prefix('/admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');

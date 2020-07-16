@@ -38,7 +38,11 @@
                                 Posts
                             </a>
                         </li>
-
+                        <li class="{{ Request::route()->getName() == 'contact.create' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route("contact.create")}}">
+                                Contatti
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
