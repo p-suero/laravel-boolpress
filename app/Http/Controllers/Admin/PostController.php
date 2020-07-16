@@ -8,6 +8,7 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -47,11 +48,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //valido i dati pervenuti dal form
         $request->validate([
             "title"=> "required|string|max:255|unique:posts,title",
-            "content" => "required"
+            "content" => "required",
+            "image" => "file|image"
         ]);
+        //mappo i dati in un array dove la chiave è il name del form
         $data = $request->all();
+        //genero uno slug
         $slug = Str::of($data['title'])->slug('-');
         $original_slug= $slug;
         $post = Post::where("slug", $slug)->first();
@@ -61,10 +66,21 @@ class PostController extends Controller
             $slug = $original_slug . '-' . $contatore;
             $post = Post::where('slug', $slug)->first();
         }
+        //inserisco lo slag nell'array
         $data['slug'] = $slug;
+        if (isset($data["image"])) {
+            //aggiungo l'immagine in storage
+            $img_path = Storage::put('uploads', $data['image']);
+            //aggiungo l'immagine nell'array "data"
+            $data["cover_image"] = $img_path;
+        }
+        //creo una nuova istanza del model post
         $new_post = new Post();
+        //mappo i dati dell'array nell'istanza
         $new_post->fill($data);
+        //inserisco i dati in database
         $new_post->save();
+        //inserisco i tag nella tabella relazionale
         if (!empty($data["tags"])) {
             $new_post->tags()->sync($data["tags"]);
         }
@@ -116,6 +132,13 @@ class PostController extends Controller
         $data = $request->all();
         $slug = Str::of($data['title'])->slug('-');
         $data['slug'] = $slug;
+        if (isset($data["image"])) {
+            //aggiungo l'immagine in storage
+            $img_path = Storage::put('uploads', $data['image']);
+            //aggiungo l'immagine nell'array "data"
+            $data["cover_image"] = $img_path;
+        }
+
         $post->update($data);
         if (!empty($data["tags"])) {
             $post->tags()->sync($data["tags"]);

@@ -6,6 +6,9 @@
         <div class="row">
             <h1 class="mb-4">Dettaglio post</h1>
             <div class="col-12">
+                @if ($post->cover_image)
+                    <img src="{{asset("storage/". $post->cover_image)}}" alt="">
+                @endif
                 <p><strong>Id:</strong> {{$post->id}}</p>
                 <p><strong>Title:</strong> {{$post->title}}</p>
                 <p><strong>Content:</strong> {{$post->content}}</p>

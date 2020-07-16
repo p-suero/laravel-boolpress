@@ -30,6 +30,9 @@
                         {{"-"}}
                     @endforelse
                 </p>
+                @if ($post->cover_image)
+                    <img src="{{asset("storage/". $post->cover_image)}}" alt="">
+                @endif
             </div>
         </div>
     </div>

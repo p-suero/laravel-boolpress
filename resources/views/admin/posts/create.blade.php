@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('admin.posts.store') }}" method="post">
+                <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="titolo">Titolo</label>
@@ -30,6 +30,10 @@
                         @error('content')
                             <small class='text-danger'>{{$message}}</small>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="immagine">Immagine di copertina</label>
+                        <input type="file" name="image" class="form-control-file">
                     </div>
                     <div class="form-group">
                         <label for="categoria">Categoria: </label>
