@@ -22,7 +22,7 @@ class PostsTableSeeder extends Seeder
             [
                 "title" => "Aumentare i follower nei social",
                 "content" => "lorem ipsum",
-                "slug" => "aumentare-i-followe-nei-social",
+                "slug" => "aumentare-i-follower-nei-social",
                 "category_id" => 3
             ],
             [
