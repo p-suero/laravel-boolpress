@@ -22,8 +22,8 @@ class TagsTableSeeder extends Seeder
                 "slug" => "ios"
             ],
             [
-                "name" => "Social",
-                "slug" => "social"
+                "name" => "Android",
+                "slug" => "Android"
             ],
 
         ];

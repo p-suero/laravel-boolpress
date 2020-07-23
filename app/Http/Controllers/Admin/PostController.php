@@ -134,21 +134,22 @@ class PostController extends Controller
         $slug = Str::of($data['title'])->slug('-');
         //lo salvo in una variabile ad-hoc
         $original_slug= $slug;
-        //richiamo i post con lo slug appena generagto
+        //richiamo i post con lo slug appena generato
         $post_in_data = Post::where("slug", $slug)->first();
         //creo una variabile contatore
         $contatore = 0;
-        //se la whete non mi restituisce un oggetto vuoto, modifico lo slug generato
+        //se il where non mi restituisce un oggetto vuoto, modifico lo slug generato
         while ($post_in_data && $post->slug != $slug) {
             //incremento il contatore
             $contatore++;
             //concateno lo slug generato con il numero del contatore
             $slug = $original_slug . '-' . $contatore;
-            //rieffettuo la verifica in database dello slug generato e concatenato
+            //rieffettuo la verifica in database dello slug generato e quindi concatenato
             $post_in_data = Post::where('slug', $slug)->first();
         }
         //inserisco lo slag nell'array
         $data['slug'] = $slug;
+        
         if (isset($data["image"])) {
             //aggiungo l'immagine in storage
             $img_path = Storage::put('uploads', $data['image']);
