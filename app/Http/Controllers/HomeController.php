@@ -23,8 +23,7 @@ class HomeController extends Controller
         $new_lead = new Lead();
         $new_lead->fill($data);
         $new_lead->save();
-
         Mail::to('admin@boolpress.it')->send(new NewContact($new_lead));
-        return view("home");
+        return redirect()->route('home');
     }
 }
